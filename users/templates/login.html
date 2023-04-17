@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Roboto", sans-serif;
+      border: none;
+    }
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      background-color: #333;
+    }
+    h2 {
+      color: #fff;
+    }
+    form {
+      border: 1px solid gray;
+      padding: 16px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    form > div {
+      display: flex;
+      flex-direction: column;
+    }
+    form > div > label {
+      color: #fff;
+    }
+    form > div > input {
+      background: none;
+      color: #fff;
+      border-radius: 8px;
+      padding-left: 8px;
+      outline: 1px solid gray;
+      height: 40px;
+    }
+    form > button {
+      border-radius: 8px;
+      cursor: pointer;
+      height: 40px;
+    }
+  </style>
+  <body>
+    {% block content %}
+    <h2>Login</h2>
+    {% if form.errors %}
+    <p>Usuário ou senha inválidos. Tente novamente.</p>
+    {% endif %}
+    <form method="post">
+      {% csrf_token %} {{ form.as_div }}
+      <button type="submit">Entrar</button>
+    </form>
+    {% endblock %}
+  </body>
+</html>

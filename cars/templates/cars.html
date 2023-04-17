@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carros</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+        border: none;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        background-color: #333;
+      }
+      header > h2 {
+        color: #fff;
+      }
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      ul > li {
+        background-color: #f1f4f0;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+        gap: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h2>Carros</h2>
+    </header>
+    <main>
+      <ul>
+        {% for car in cars %}
+        <li>
+          <p>{{car.brand}}</p>
+          <p>{{car.model}}</p>
+          <p>{{car.color}}</p>
+          <p>{{car.year}}</p>
+          <a href="{% url 'car_detail' car.id %}">Ver carro</a>
+          <a href="{% url 'car_update' car.id %}">Atualizar carro</a>
+          <a href="{% url 'car_delete' car.id %}">Deletar carro</a>
+        </li>
+        {% endfor %}
+      </ul>
+      <a href="{% url 'car_register' %}">Cadastrar novo carro</a>
+    </main>
+  </body>
+</html>
